@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Treballador extends Thread{
     
     private float sou_anual_brut;
@@ -7,7 +5,7 @@ public class Treballador extends Thread{
     private int edat_fi_treball;
     private int edat_actual;
     private float cobrat;
-    private Random rnd;
+    private double rnd;
 
     public Treballador(int sou_anual_brut, int edat_inici_treball, int edat_fi_treball, String nom){
         this.sou_anual_brut = sou_anual_brut;
@@ -15,6 +13,7 @@ public class Treballador extends Thread{
         this.edat_fi_treball = edat_fi_treball;
         this.edat_actual = 0;
         this.cobrat = 0.0f;
+        this.rnd = Math.random();
         this.setName(nom);
     }
 
@@ -38,6 +37,11 @@ public class Treballador extends Thread{
             for (int i = 0; i < 12; i++){
                 cobra();
                 pagaImpostos();
+                try {
+                    sleep(Math.round(rnd));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             edat_actual++;
         }
