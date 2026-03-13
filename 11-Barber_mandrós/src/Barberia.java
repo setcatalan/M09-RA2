@@ -13,9 +13,10 @@ public class Barberia extends Thread {
 
     public Object getCondBarber(){return this.condBarber;}
 
-    public Client seguentClient(){
+    public Client seguentClient(String nom){
         synchronized(condBarber){
             while (salaEspera.isEmpty()) {
+                System.out.println("Ningú en espera\n" + nom + " dormint");
                 try {
                     condBarber.wait();
                 } catch (InterruptedException e) {

@@ -7,10 +7,8 @@ public class Barber extends Thread {
     @Override
     public void run(){
         while(true){
-            System.out.println("Ningú en espera\n" + getName() + " dormint");
-
-            while (Barberia.barberia.seguentClient() != null) {
-                Client client = Barberia.barberia.seguentClient();
+            while (Barberia.barberia.seguentClient(getName()) != null) {
+                Client client = Barberia.barberia.seguentClient(getName());
                 System.out.println("Li toca al " + client.getNom());
                 client.tallarseElCabell();
                 try {
